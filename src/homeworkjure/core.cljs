@@ -18,7 +18,7 @@
 (defn spin [i]
   (let [op1 (inc (rand-int 9))
         op2 (inc (rand-int 9))]
-    (swap! app-state merge {:op1 ops1 :op2 op2})
+    (swap! app-state merge {:op1 op1 :op2 op2})
     (if (pos? i)
       (.setTimeout js/window spin DELAY (dec i))
       (.start recognition))))
