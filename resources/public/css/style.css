@@ -3,8 +3,8 @@
 .wrapper {
     display: grid;
     grid-gap: 1px;
-    grid-template-columns: auto 500px auto;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto 80% auto;
+    grid-template-rows: 1fr 1fr auto;
 }
 
 .txt {
@@ -15,8 +15,13 @@
     
 }
 
+.score {
+    font-size: 72px;
+    text-align: center;
+    padding: 2px;
+}
+
 .results {
-    border: 8px solid teal;
     font-size: 72px;
     text-align: center;
     padding: 2px;

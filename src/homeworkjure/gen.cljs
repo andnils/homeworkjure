@@ -1,17 +1,19 @@
 (ns homeworkjure.gen)
 
+(defn frmt [term-1 op term-2 result]
+  (str term-1 " " op " " term-2 " = " result))
+
+
+;; TODO: maybe use spec generators?
 
 (defn gen-add
   "Generates e.g. a+b=?."
   []
   (let [term-1 (inc (rand-int 8))
-        term-2 (inc (rand-int 8))
+        term-2 (inc (rand-int (- 10 term-1)))
         answer (+ term-1 term-2)]
-    {:term-1 (str term-1)
-     :op  "+"
-     :term-2 (str term-2)
-     :result    "?"
-     :answer    (str answer)}))
+    {:q (frmt term-1 "+" term-2 "?")
+     :answer (str answer)}))
 
 (defn gen-add-x
   "Generates e.g. a+?=x."
@@ -19,11 +21,8 @@
   (let [term-1 (inc (rand-int 8))
         term-2 (inc (rand-int 8))
         answer (+ term-1 term-2)]
-    {:term-1 (str term-1)
-     :op  "+"
-     :term-2 "?"
-     :result    (str answer)
-     :answer    (str term-2)}))
+    {:q (frmt term-1 "+" "?" answer)
+     :answer (str term-2)}))
 
 
 (defn gen-sub
@@ -32,11 +31,8 @@
   (let [term-2 (rand-int 5)
         term-1 (+ term-2 (rand-int 5))
         answer (- term-1 term-2)]
-    {:term-1 (str term-1)
-     :op  "-"
-     :term-2 (str term-2)
-     :result    "?"
-     :answer    (str answer)}))
+    {:q (frmt term-1 "-" term-2 "?")
+     :answer (str answer)}))
 
 
 (defn gen-sub-x
@@ -45,14 +41,14 @@
   (let [term-2 (rand-int 5)
         term-1 (+ term-2 (rand-int 5))
         answer (- term-1 term-2)]
-    {:term-1 (str term-1)
-     :op  "-"
-     :term-2 "?"
-     :result    (str answer)
-     :answer    (str term-2)}))
+    {:q (frmt term-1 "-" "?" answer)
+     :answer (str term-2)}))
 
 
 
-(defn gen-random [] (let [generators [#'gen-add #'gen-add-x #'gen-sub #'gen-sub-x]] (apply (rand-nth generators) nil)))
+(defn gen-random [] (let [generators [#'gen-add #'gen-add-x #'gen-sub #'gen-sub-x]]
+                      (apply (rand-nth generators) nil)
+                      ;;(gen-add)
+                      ))
 
 
