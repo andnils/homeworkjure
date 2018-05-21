@@ -33,6 +33,7 @@
   "If you say '6' it will be parsed as 'sex', not '6' so
   some cleaning is necessary."
   [response]
+  (println response)
   (case (lower-case response)
     "sex" "6"
     "mio" "9"
@@ -62,7 +63,7 @@
 
 (aset js/document "onkeypress" new-question)
 (aset recognition "onresult" handle-speech-event)
-
+;;(aset recognition "onend" #(println "SpeechRecognition.onEnd"))
 
 (defn math-trainer []
   (let [{:keys [q score msg]} @app-state]
@@ -84,3 +85,8 @@
 (reagent/render-component
  [math-trainer]
  (. js/document (getElementById "app")))
+
+
+(defn on-js-reload []
+  )
+
