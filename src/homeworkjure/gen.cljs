@@ -44,11 +44,29 @@
     {:q (frmt term-1 "-" "?" answer)
      :answer (str term-2)}))
 
+(defn gen-mul
+  "Higher order function for generating
+  a certain multiplikationstabell."
+  [i]
+  (fn []
+    (let [term (inc (rand-int 10))
+          answer (* i term)]
+      {:q (frmt i "×" term "?")
+       :answer (str answer)})))
 
+(def gen-mul-1 (gen-mul 1))
+(def gen-mul-2 (gen-mul 2))
+(def gen-mul-5 (gen-mul 5))
+(def gen-mul-10 (gen-mul 10))
 
-(defn gen-random [] (let [generators [#'gen-add #'gen-add-x #'gen-sub #'gen-sub-x]]
-                      (apply (rand-nth generators) nil)
-                      ;;(gen-add)
-                      ))
+(defn gen-random []
+  (let
+      [generators [#'gen-mul-1
+                   #'gen-mul-2
+                   #'gen-mul-5
+                   #'gen-mul-10]]
+    (apply (rand-nth generators) nil)
+    ;; (gen-add)
+    ))  
 
 
