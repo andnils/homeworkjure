@@ -8,16 +8,16 @@
   
   :min-lein-version "2.7.1"
 
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.238"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
+                 [org.clojure/clojurescript "1.10.516"]
                  [org.clojure/core.async  "0.4.474"]
-                 [reagent "0.7.0"]]
+                 [reagent "0.8.1"]]
 
-  :plugins [[lein-figwheel "0.5.15"]
+  :plugins [[lein-figwheel "0.5.18"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
 
   ;; for java 9/10
-  :jvm-opts ["--add-modules" "java.xml.bind"]
+  ;;:jvm-opts ["--add-modules" "java.xml.bind"]
   
   :source-paths ["src"]
 
